@@ -2,6 +2,28 @@
 
 declare(strict_types=1);
 
+function signup_inputs(){
+
+    if(isset($_SESSION["signup_data"]["username"]) && !isset($_SESSION["signup_errors"]["username_taken"])){
+        echo '<input type="text" name="username" placeholder="Username"
+        value="'. $_SESSION["signup_data"]["username"] . '"
+        >';
+    } else {
+        echo '<input type="text" name="username" placeholder="Username" />';
+    }
+
+    echo '<input type="text" name="pwd" placeholder="Password" />';
+    
+    if(isset($_SESSION["signup_data"]["email"]) && !isset($_SESSION["signup_errors"]["email_registered"]) && !isset($_SESSION["signup_errors"]["invalid_email"])){
+        echo '<input type="text" name="email" placeholder="Email"
+        value="'. $_SESSION["signup_data"]["email"] . '"
+        >';
+    } else {
+        echo '<input type="text" name="email" placeholder="Email" />';
+    }
+
+}
+
 function check_signup_errors(){
     if(isset($_SESSION["signup_errors"])){
         $errors = $_SESSION["signup_errors"];
