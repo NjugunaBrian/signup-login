@@ -30,7 +30,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         require_once 'config_session.inc.php';
 
         if($errors){
-            $_SESSION["signup_errors"] = $errors;
+            $_SESSION["errors_login"] = $errors;
 
            
 
@@ -43,6 +43,16 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $session_id($sessionId);
 
 
+        $_SESSION["user_id"] = $result["id"];
+        $_SESSION["user_username"] = htmlspecialchars($result["username"]);
+
+        $_SESSION["last_generation"] = time();
+
+        header("Location: ../index.php?login=success");
+        $pdo = null;
+        $stmt = null;
+
+        die();
     } catch (PDOException $e) {
         die("Query failed: " . $e->getMessage());
 
