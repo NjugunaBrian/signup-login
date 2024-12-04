@@ -43,6 +43,12 @@ check_login_errors();
 check_signup_errors();
 
 ?>
+
+<h3>Log Out</h3>
+
+<form action="includes/logout.inc.php" method="POST">
+    <button>Log Out</button>
+</form>
     
 </body>
 </html>

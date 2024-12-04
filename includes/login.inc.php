@@ -22,7 +22,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $errors["login_incorrect"] = "Incorrect login info!";
         }
 
-        if(!is_username_wrong($result) && is_password_wrong($pwd, $result["pwd"])){
+        if(!is_username_wrong($result) && (!isset($result["pwd"]) || is_password_wrong($pwd, $result["pwd"]))){
             $errors["login_incorrect"]  = "Incorrect login info!";
         }
         
@@ -40,7 +40,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
         $newSessionId = session_create_id();
         $sessionId = $newSessionId . "_" . $result["id"];
-        $session_id($sessionId);
+        session_id($sessionId);
 
 
         $_SESSION["user_id"] = $result["id"];
